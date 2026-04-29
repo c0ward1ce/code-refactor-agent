@@ -1,0 +1,13 @@
+.pytest_cache/
+__pycache__/
+.venv/
+dist/
+build/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+refactor-report.json
+artifacts/
+.tmp-tests/
+.tmp-pip/
