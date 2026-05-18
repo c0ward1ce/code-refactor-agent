@@ -1,14 +1,48 @@
 # Code Refactor Agent
 
-`Code Refactor Agent` is a runnable multi-language refactoring CLI that scans a repository, builds an execution plan, applies safe automated fixes, and emits review-ready pull request artifacts.
+`Code Refactor Agent` is a runnable multi-language CLI for repository cleanup and safe automated refactoring.
 
-It is designed as a practical GitHub project rather than a slide-only concept:
+It scans a codebase, builds an execution plan, applies low-risk rewrites, and produces review-ready artifacts such as unified diffs and pull request summaries.
 
-- `Analyzer`: discovers files, detects rule-based refactor opportunities, and gathers agent insights
-- `Planner`: ranks work items and assigns them to simulated specialist agents
-- `Executor`: applies safe automated rewrites and generates unified diffs
+This project is built for people who want something more practical than a conceptual AI demo:
+
+- run locally with no model dependency
+- add optional OpenAI or Claude planning when needed
+- review changes as patch files and PR-ready markdown
+- extend rules incrementally across multiple languages
+
+## Why This Project
+
+Refactoring tools are often split between two extremes:
+
+- static linters that can detect issues but do not help drive execution
+- AI demos that sound impressive but are hard to run, review, or trust
+
+`Code Refactor Agent` sits in the middle. It uses deterministic rewrites for safety, adds agent-style planning for explainability, and keeps every output inspectable in a normal engineering workflow.
+
+## At a Glance
+
+- `Analyzer`: discovers files, detects refactor opportunities, and gathers agent insights
+- `Planner`: ranks work items and assigns them to specialist roles
+- `Executor`: applies safe rewrites and generates unified diffs
 - `Verifier`: recompiles Python files and runs lightweight checks for other languages
 - `ArtifactWriter`: emits a patch file and a pull-request style markdown report
+
+## Quick Start
+
+Run directly from the repository:
+
+```bash
+python main.py scan ./examples
+python main.py apply ./examples --write --emit-diff --emit-pr-report --artifacts-dir ./artifacts
+```
+
+Typical outputs:
+
+- terminal scan report
+- JSON plan output
+- `artifacts/refactor.patch`
+- `artifacts/pull_request.md`
 
 ## What Was Upgraded
 
@@ -32,15 +66,6 @@ This version now includes all three upgrades:
 - Redundant boolean comparison cleanup for Python, TypeScript, JavaScript, Java, and Go
 - Trailing whitespace cleanup
 - Single newline at end of file
-
-## Quick Start
-
-Run directly from the repository:
-
-```bash
-python main.py scan ./examples
-python main.py apply ./examples --write --emit-diff --emit-pr-report --artifacts-dir ./artifacts
-```
 
 ## Multi-Agent Planning
 

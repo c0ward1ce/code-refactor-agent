@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "code-refactor-agent"
 version = "0.1.0"
-description = "A runnable CLI agent for safe Python code refactoring"
+description = "A runnable multi-language CLI for safe automated refactoring and PR-ready artifacts"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
@@ -28,4 +28,3 @@ package-dir = {"" = "src"}
 
 [tool.setuptools.packages.find]
 where = ["src"]
-
